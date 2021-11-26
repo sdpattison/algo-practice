@@ -1,3 +1,5 @@
+
+// O(n)
 const mergeSortedArrays = (array1, array2) => {
     const combinedArray = [];
     let i = 0, j = 0;
