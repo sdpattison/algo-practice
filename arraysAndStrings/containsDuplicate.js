@@ -3,6 +3,7 @@
 /**
  * @param {number[]} nums
  * @return {boolean}
+ * O(n) time
  */
 const containsDuplicate = (nums) => {
     const counter = {};
