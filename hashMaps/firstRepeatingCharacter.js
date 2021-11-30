@@ -1,8 +1,8 @@
 /**
 * Given a string, return the first repeating character. If there is no repeating character, return -1
 *
-* @param {number[]} nums
-* @return {boolean}
+* @param {string} string
+* @return
 * O(n) time
 */
 const firstRepeatingCharacter = (string) => {
