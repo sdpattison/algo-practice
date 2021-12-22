@@ -26,7 +26,22 @@ const canSum = (target, nums) => {
     return false;
 }
 
-console.log(canSum(7, [5, 3, 4, 7])); // true
-console.log(canSum(8, [2, 3, 5])); // true
-console.log(canSum(8, [1, 4, 5]));// true
-console.log(canSum(3, [2, 5]));// false
+const canSumTabulation = (target, nums) => {
+    const table = Array(target + 1).fill(false);
+    table[0] = true;
+    for (let i = 0; i < table.length; i++) {
+        if (table[i] === true) {
+            for (let num of nums) {
+                if (num + i < table.length) {
+                    table[num + i] = true;
+                }
+            }
+        }
+    }
+    return table[target];
+}
+
+console.log(canSumTabulation(7, [5, 3, 4, 7])); // true
+console.log(canSumTabulation(8, [2, 3, 5])); // true
+console.log(canSumTabulation(8, [1, 4, 5]));// true
+console.log(canSumTabulation(3, [2, 5]));// false

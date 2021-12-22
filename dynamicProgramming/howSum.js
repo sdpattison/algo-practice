@@ -29,7 +29,22 @@ const howSum = (target, nums, memoized = {}) => {
     return null;
 }
 
-console.log(howSum(7, [5, 3, 4, 7])); // [7]
-console.log(howSum(8, [2, 3, 5])); // [3, 5]
-console.log(howSum(27, [4, 5]));// [4, 4]
-console.log(howSum(100, [1, 2, 5, 25]));// [25, 25, 25, 25]
+const howSumTabulation = (target, nums) => {
+    const table = Array(target + 1).fill(false);
+    table[0] = [];
+    for (let i = 0; i < table.length; i++) {
+        if (table[i]) {
+            for (let num of nums) {
+                if (i + num < table.length) {
+                    table[i + num] = [num, ...table[i]];
+                }
+            }
+        }
+    }
+    return table[target];
+}
+
+console.log(howSumTabulation(7, [5, 3, 4, 7])); // [7]
+console.log(howSumTabulation(8, [2, 3, 5])); // [3, 5]
+console.log(howSumTabulation(27, [4, 5]));// [4, 4]
+console.log(howSumTabulation(100, [1, 2, 5, 25]));// [25, 25, 25, 25]

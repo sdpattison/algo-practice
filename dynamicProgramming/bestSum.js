@@ -32,7 +32,26 @@ const bestSum = (target, nums, shortestSolution = null, memoized = {}) => {
     return shortestSolution;
 }
 
-console.log(bestSum(7, [5, 3, 4, 7])); // [7]
-console.log(bestSum(8, [2, 3, 5])); // [3, 5]
-console.log(bestSum(8, [1, 4, 5]));// [4, 4]
-console.log(bestSum(100, [1, 2, 5, 25]));// [25, 25, 25, 25]
+const bestSumTabulation = (target, nums) => {
+    const table = Array(target + 1).fill(null);
+    table[0] = [];
+    for (let i = 0; i < table.length; i++) {
+        if (table[i]) {
+            for (let num of nums) {
+                const potentialTarget = i + num;
+                if (potentialTarget < table.length) {
+                    const possibleSolution = [num, ...table[i]];
+                    if (!table[potentialTarget] || table[potentialTarget].length > possibleSolution.length) {
+                        table[potentialTarget] = possibleSolution;
+                    }
+                }
+            }
+        }
+    }
+    return table[target];
+}
+
+console.log(bestSumTabulation(7, [5, 3, 4, 7])); // [7]
+console.log(bestSumTabulation(8, [2, 3, 5])); // [3, 5]
+console.log(bestSumTabulation(8, [1, 4, 5]));// [4, 4]
+console.log(bestSumTabulation(100, [1, 2, 5, 25]));// [25, 25, 25, 25]
